@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>News Channel Announcement</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+      (function(){
+        try {
+          var t = localStorage.getItem('theme') || 'light';
+          if (t !== 'light' && t !== 'dark') t = 'light';
+          document.documentElement.setAttribute('data-theme', t);
+        } catch (e) { document.documentElement.setAttribute('data-theme','light'); }
+      })();
+    </script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" href="data:,">
+    <meta name="color-scheme" content="dark light">
+    <meta name="theme-color" content="#0b0f14">
+    <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle theme">Theme</button>
+    <div id="page-loader" class="page-loader hidden" aria-hidden="true">
+        <div class="spinner" role="status" aria-label="Loading"></div>
+    </div>
+    <div class="landing container">
+        <h1 id="main-title" class="clickable">News Channel Announcement</h1>
+        <p class="subtitle">Tap to reveal channels and browse the latest headlines</p>
+        <div id="channel-list" class="channel-list hidden">
+            {% for channel in channels %}
+                <a class="channel-btn" href="/channel/{{ channel }}">{{ channel }}</a>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Floating social icons -->
+    <div class="floating-socials" aria-label="Social links">
+        <a class="floating-social-btn" href="https://www.instagram.com/harsh.jain_24/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="5" ry="5"></rect>
+                <circle cx="12" cy="12" r="4"></circle>
+                <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"></circle>
+            </svg>
+        </a>
+        <a class="floating-social-btn" href="https://github.com/harsh769" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+                <path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.51 2.87 8.33 6.85 9.68.5.09.68-.22.68-.49 0-.24-.01-.88-.01-1.73-2.79.62-3.38-1.37-3.38-1.37-.45-1.18-1.1-1.5-1.1-1.5-.9-.63.07-.62.07-.62 1 .07 1.52 1.06 1.52 1.06.89 1.56 2.34 1.11 2.9.85.09-.66.35-1.11.63-1.37-2.23-.26-4.58-1.14-4.58-5.08 0-1.12.39-2.04 1.03-2.76-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.05.8-.23 1.65-.35 2.5-.35.85 0 1.7.12 2.5.35 1.91-1.32 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.64 1.03 2.76 0 3.95-2.35 4.82-4.59 5.08.36.32.68.94.68 1.9 0 1.37-.01 2.48-.01 2.82 0 .27.18.59.69.49A10.04 10.04 0 0022 12.26C22 6.58 17.52 2 12 2z"/>
+            </svg>
+        </a>
+        <a class="floating-social-btn" href="https://www.linkedin.com/in/harsh-jain-7065b526a/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+                <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8.5h4V23h-4zM8.5 8.5h3.8v2h.05c.53-1 1.82-2.05 3.74-2.05C20.2 8.45 23 10.8 23 15.22V23h-4v-6.78c0-1.62-.03-3.7-2.25-3.7-2.25 0-2.6 1.76-2.6 3.58V23h-4V8.5z"/>
+            </svg>
+        </a>
+    </div>
+
+    <!-- Subtle on-screen credit -->
+    <div class="credit-badge" aria-hidden="true">Harsh Jain ©</div>
+
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

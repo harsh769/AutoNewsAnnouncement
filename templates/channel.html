@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ name }} News</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+      (function(){
+        try {
+          var t = localStorage.getItem('theme') || 'light';
+          if (t !== 'light' && t !== 'dark') t = 'light';
+          document.documentElement.setAttribute('data-theme', t);
+        } catch (e) { document.documentElement.setAttribute('data-theme','light'); }
+      })();
+    </script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" href="data:,">
+    <meta name="color-scheme" content="dark light">
+    <meta name="theme-color" content="#0b0f14">
+    <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle theme">Theme</button>
+    <div id="page-loader" class="page-loader hidden" aria-hidden="true">
+        <div class="spinner" role="status" aria-label="Loading"></div>
+    </div>
+    <header class="topbar container">
+        <a class="back-btn" href="/">← Back</a>
+        <h1 class="page-title">{{ name }} — Latest News</h1>
+    </header>
+    <main class="container">
+        <div class="news-container">
+            {% for item in news %}
+                <article class="news-card">
+                    <h3 class="news-title"><a href="{{ item.link }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a></h3>
+                    <p class="news-meta">{{ item.published }}</p>
+                </article>
+            {% endfor %}
+        </div>
+    </main>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
